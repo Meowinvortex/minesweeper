@@ -5,7 +5,7 @@ The goal with this project was to learn how to use SFML and I'd say it went quit
 
 <h2>Notes:</h2>
 
-<p>. No part of this code was planned and was improvised
-   . Spagetti code
-   . Probably can be made more efficiently
+<p>. No part of this code was planned and was improvised<br>
+   . Spagetti code<br>
+   . Probably can be made more efficiently<br>
    . Works tho, as far as i can tell there are no bug</p>
