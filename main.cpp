@@ -165,19 +165,13 @@ string int_to_string(int num){
 // function that randomly selects cells to have a mine based on ow many mines have been selected
 void create_mines() {
     std::vector<std::pair<int, int>> free_positions;
-    for (int x = 0; x < GRID_WIDTH; x++) {
-        for (int y = 0; y < GRID_HEIGHT; y++) {
-            free_positions.emplace_back(x, y);
-        }
-    }
-    random_shuffle(free_positions.begin(), free_positions.end());
     int mines_placed = 0;
     if(amount == 0){
         amount = (GRID_HEIGHT * GRID_WIDTH) - 1;
     }
-    for (const auto& pos : free_positions) {
+    for (int i = 0 ; i < amount ; i++) {
         if (mines_placed >= amount) break;
-        cells[pos].mine = true;
+        cells[{rand()%GRID_WIDTH,rand()%GRID_HEIGHT}].mine = true;
         mines_placed++;
     }
 }
@@ -315,6 +309,10 @@ void reset(auto button){
 
 // main function
 int main() {
+    
+    // define the random seed for placing mines
+    srand(int(time(0)));
+
     // for storing the current seconds on the game clock
     sf::Time time_recorded;
     
@@ -425,9 +423,7 @@ int main() {
 
     // initiate first reset
     reset(button);
-
-    // define the random seed for placing mines
-    srand(int(time(0)));
+    reset(button);
 
     // main game loop
     while (window.isOpen()) {
