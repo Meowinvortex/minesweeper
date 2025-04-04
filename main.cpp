@@ -165,14 +165,21 @@ string int_to_string(int num){
 // function that randomly selects cells to have a mine based on ow many mines have been selected
 void create_mines() {
     std::vector<std::pair<int, int>> free_positions;
-    int mines_placed = 0;
+    int chosen;
+    for(int x = 0 ; x < GRID_WIDTH ; x++){
+        for(int y = 0; y < GRID_HEIGHT; y++){
+            free_positions.push_back({x,y});
+        }
+
+    }
     if(amount == 0){
         amount = (GRID_HEIGHT * GRID_WIDTH) - 1;
     }
     for (int i = 0 ; i < amount ; i++) {
-        if (mines_placed >= amount) break;
-        cells[{rand()%GRID_WIDTH,rand()%GRID_HEIGHT}].mine = true;
-        mines_placed++;
+        chosen = rand()%free_positions.size();
+        cells[free_positions[chosen]].mine = true;
+        free_positions.erase(free_positions.begin() + chosen);
+
     }
 }
 
